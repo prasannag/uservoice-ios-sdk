@@ -123,10 +123,14 @@
     }
     _detailsController.fields = fields;
     _detailsController.selectedFieldValues = [NSMutableDictionary dictionary];
+    
+    _detailsController.userEmail = [UVSession currentSession].config.email;
+    
     for (NSString *key in [UVSession currentSession].config.customFields.allKeys) {
         NSString *value = [UVSession currentSession].config.customFields[key];
         _detailsController.selectedFieldValues[key] = @{ @"id" : value, @"label" : value };
     }
+    
     [self.navigationController pushViewController:_detailsController animated:YES];
 }
 
